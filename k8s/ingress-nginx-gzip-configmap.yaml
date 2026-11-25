@@ -1,0 +1,19 @@
+# Cluster-level transport/compression config for the NGINX Ingress Controller.
+# Apply once per cluster (snippets may be disabled via allow-snippet-annotations).
+#
+#   kubectl apply -f k8s/ingress-nginx-gzip-configmap.yaml -n ingress-nginx
+#
+# If your controller ConfigMap has a different name, merge these keys into it:
+#   kubectl edit configmap ingress-nginx-controller -n ingress-nginx
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+data:
+  # Explicitly enable HTTP/2 for TLS listeners (ALPN negotiation with clients).
+  use-http2: "true"
+  use-gzip: "true"
+  gzip-level: "6"
+  gzip-min-length: "128"
+  gzip-types: "text/html application/atom+xml application/javascript application/x-javascript application/json application/rss+xml application/vnd.ms-fontobject application/x-font-ttf application/font-woff application/font-woff2 application/xhtml+xml application/xml font/opentype font/woff font/woff2 image/svg+xml image/x-icon text/css text/javascript text/plain text/x-component"

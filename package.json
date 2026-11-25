@@ -1,0 +1,51 @@
+{
+  "name": "movyohealth",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/prepare-next-dev.js && next dev --turbo",
+    "dev:turbo": "node scripts/prepare-next-dev.js && next dev --turbo",
+    "build": "node scripts/prepare-next-build.js && npm run hash-assets && npm run update-css-hashes && next build --webpack && node scripts/patch-compression-threshold.js && node scripts/remove-polyfills.js && node scripts/add-defer-to-scripts.js && node scripts/merge-route-scripts.js && node scripts/defer-home-v2-images.js && node scripts/add-preload.js && node scripts/verify-production-static.js",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "docker:build": "docker build -t movyohealth .",
+    "docker:run": "docker run --rm -p 3000:3000 movyohealth",
+    "docker:run:3001": "docker run --rm -p 3001:3000 movyohealth",
+    "docker:compose": "docker compose up --build",
+    "lhci": "lhci autorun --upload.target=filesystem --upload.outputDir=./lighthouse-reports --collect.settings.chromeFlags=\"--no-sandbox --disable-dev-shm-usage\"",
+    "hash-assets": "node scripts/hash-assets.js",
+    "update-css-hashes": "node scripts/update-css-with-hashes.js",
+    "prepare": "node scripts/setup-git-hooks.js"
+  },
+  "dependencies": {
+    "@next/bundle-analyzer": "^16.2.6",
+    "@next/third-parties": "^16.2.6",
+    "@tanstack/react-query": "^5.100.1",
+    "@tanstack/react-query-devtools": "^5.100.1",
+    "axios": "^1.15.2",
+    "clsx": "^2.1.1",
+    "next": "^16.2.6",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-hook-form": "^7.73.1",
+    "react-hot-toast": "^2.6.0",
+    "tailwind-merge": "^3.5.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.40",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "critters": "^0.0.25",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.2",
+    "prettier": "^3.8.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

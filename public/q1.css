@@ -1,0 +1,981 @@
+/*! CSS Used from: https://directmeds.com/dm-q2spc-c31/sharedAssets/css/bootstrap.min.css */
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  text-align: var(--bs-body-text-align);
+  background-color: var(--bs-body-bg);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+.h4,
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+}
+h1 {
+  font-size: calc(1.375rem + 1.5vw);
+}
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+h2 {
+  font-size: calc(1.325rem + 0.9vw);
+}
+@media (min-width: 1200px) {
+  h2 {
+    font-size: 2rem;
+  }
+}
+h3 {
+  font-size: calc(1.3rem + 0.6vw);
+}
+@media (min-width: 1200px) {
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+.h4,
+h4 {
+  font-size: calc(1.275rem + 0.3vw);
+}
+@media (min-width: 1200px) {
+  .h4,
+  h4 {
+    font-size: 1.5rem;
+  }
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+a {
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  text-decoration: underline;
+}
+a:hover {
+  --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+}
+img {
+  vertical-align: middle;
+}
+label {
+  display: inline-block;
+}
+button {
+  border-radius: 0;
+}
+button:focus:not(:focus-visible) {
+  outline: 0;
+}
+button,
+input,
+select {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+button,
+select {
+  text-transform: none;
+}
+select {
+  word-wrap: normal;
+}
+select:disabled {
+  opacity: 1;
+}
+[type="button"],
+button {
+  -webkit-appearance: button;
+}
+[type="button"]:not(:disabled),
+button:not(:disabled) {
+  cursor: pointer;
+}
+[hidden] {
+  display: none !important;
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.container,
+.container-fluid {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
+}
+.col-12 {
+  flex: 0 0 auto;
+  width: 100%;
+}
+@media (min-width: 576px) {
+  .col-sm-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .col-md-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .col-lg-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .col-lg-8 {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+  }
+  .offset-lg-2 {
+    margin-left: 16.66666667%;
+  }
+  .offset-lg-3 {
+    margin-left: 25%;
+  }
+}
+.form-label {
+  margin-bottom: 0.5rem;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-control {
+    transition: none;
+  }
+}
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+.form-control::placeholder {
+  color: var(--bs-secondary-color);
+  opacity: 1;
+}
+.form-control:disabled {
+  background-color: var(--bs-secondary-bg);
+  opacity: 1;
+}
+.form-control-lg {
+  min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2));
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: var(--bs-border-radius-lg);
+}
+.form-select {
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  display: block;
+  width: 100%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-image:
+    var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-select {
+    transition: none;
+  }
+}
+.form-select:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+.form-select:disabled {
+  background-color: var(--bs-secondary-bg);
+}
+.btn {
+  --bs-btn-padding-x: 0.75rem;
+  --bs-btn-padding-y: 0.375rem;
+  --bs-btn-font-size: 1rem;
+  --bs-btn-font-weight: 400;
+  --bs-btn-line-height: 1.5;
+  --bs-btn-color: var(--bs-body-color);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-width: var(--bs-border-width);
+  --bs-btn-border-color: transparent;
+  --bs-btn-border-radius: var(--bs-border-radius);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+  --bs-btn-disabled-opacity: 0.65;
+  --bs-btn-focus-box-shadow: 0 0 0 0.25rem
+    rgba(var(--bs-btn-focus-shadow-rgb), 0.5);
+  display: inline-block;
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+  font-family: var(--bs-btn-font-family);
+  font-size: var(--bs-btn-font-size);
+  font-weight: var(--bs-btn-font-weight);
+  line-height: var(--bs-btn-line-height);
+  color: var(--bs-btn-color);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+  border-radius: var(--bs-btn-border-radius);
+  background-color: var(--bs-btn-bg);
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  color: var(--bs-btn-active-color);
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-border-color);
+}
+.btn:disabled {
+  color: var(--bs-btn-disabled-color);
+  pointer-events: none;
+  background-color: var(--bs-btn-disabled-bg);
+  border-color: var(--bs-btn-disabled-border-color);
+  opacity: var(--bs-btn-disabled-opacity);
+}
+.btn-lg {
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-font-size: 1.25rem;
+  --bs-btn-border-radius: var(--bs-border-radius-lg);
+}
+.d-block {
+  display: block !important;
+}
+.d-flex {
+  display: flex !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+.justify-content-center {
+  justify-content: center !important;
+}
+.justify-content-between {
+  justify-content: space-between !important;
+}
+.align-items-center {
+  align-items: center !important;
+}
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+.my-5 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.mt-3 {
+  margin-top: 1rem !important;
+}
+.me-3 {
+  margin-right: 1rem !important;
+}
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+.fs-4 {
+  font-size: calc(1.275rem + 0.3vw) !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-dark {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+}
+.text-muted {
+  --bs-text-opacity: 1;
+  color: var(--bs-secondary-color) !important;
+}
+@media (min-width: 1200px) {
+  .fs-4 {
+    font-size: 1.5rem !important;
+  }
+}
+/*! CSS Used from: https://directmeds.com/dm-q2spc-c31/css/q-v2.css */
+body {
+  background-color: #f7f4f0;
+}
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+.progress-step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+.progress-circle {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #b5b5b5;
+  border-radius: 50%;
+  background-color: #f7f3ef;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progress-circle.active {
+  border-color: #0ab0fb;
+}
+.progress-circle.active::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #0ab0fb;
+  border-radius: 50%;
+}
+.progress-label {
+  margin-left: 0.5rem;
+  color: #a0a0a0;
+  font-weight: 500;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 400;
+  font-family:
+    "Lora", "__inter_0b7090", "__inter_Fallback_0b7090", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+}
+.progress-step.active .progress-label {
+  color: #0ab0fb;
+}
+.progress-line {
+  flex: 1;
+  height: 2px;
+  background-color: #ccc;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.progress-container {
+  padding: 20px 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.progress-container {
+  margin: 0 auto;
+  width: fit-content;
+}
+.progress-step {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 991.98px) {
+  .progress-step:not(.active) .progress-label {
+    display: none;
+  }
+}
+@media (max-width: 575.98px) {
+  .progress-container {
+    justify-content: space-between;
+    padding: 0.5rem;
+    gap: 0;
+  }
+  .progress-step {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .progress-circle {
+    width: 24px;
+    height: 24px;
+  }
+  .progress-line {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .progress-label {
+    display: none !important;
+  }
+}
+body {
+  background-color: #f7f3ef;
+  font-family: "Helvetica Neue", sans-serif;
+}
+.headline {
+  letter-spacing: -0.01em !important;
+  margin-top: 20px !important;
+  margin-bottom: 10px !important;
+  font-size: 45px !important;
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
+  color: #0ab0fb !important;
+}
+h1 {
+  letter-spacing: -0.01em !important;
+  margin-top: 20px !important;
+  margin-bottom: 10px !important;
+  font-size: 45px !important;
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
+}
+.progress-line {
+  flex: 1;
+  height: 2px;
+  background-color: #ccc;
+  margin: 0 8px;
+}
+.form-section {
+  margin: 0 auto;
+  padding: 2rem;
+}
+.form-label {
+  font-weight: 600;
+}
+.btn-next {
+  background-color: #0ab0fb;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  padding: 0.75rem 2rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+.btn-next:hover {
+  background-color: #06a3e9;
+  color: #fff;
+}
+div {
+  font-family:
+    "Lora", "__inter_0b7090", "__inter_Fallback_0b7090", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+}
+h3 {
+  letter-spacing: -0.015em !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  font-size: 22px !important;
+  font-weight: 300 !important;
+  line-height: 24px !important;
+  color: rgb(0, 0, 0) !important;
+}
+select,
+input {
+  -moz-box-align: center;
+  align-items: center;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  min-height: 2.625rem;
+  outline: 0px !important;
+  position: relative;
+  transition: 100ms;
+  border-color: rgba(56, 49, 44, 0.2);
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  color: white;
+  background: rgb(255, 255, 255);
+}
+input::placeholder {
+  color: rgba(56, 49, 44, 0.35) !important;
+}
+select.has-value {
+  color: #000 !important;
+}
+select {
+  color: rgba(56, 49, 44, 0.35) !important;
+}
+select.has-value {
+  color: #000 !important;
+}
+select option {
+  color: #000;
+}
+.btn-next {
+  background-color: #0ab0fb;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 2rem;
+  transition: background-color 0.2s ease;
+}
+.btn-next:hover {
+  background-color: #06a3e7;
+  color: white;
+}
+.form-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+#bmiCorrection,
+#generalWarning {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  max-width: 100%;
+  background-color: rgb(247, 243, 239);
+}
+/*! CSS Used from: https://directmeds.com/dm-q2spc-c31/sharedAssets/css/bootstrap-icons.min.css */
+.bi::before,
+[class*=" bi-"]::before {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.bi-arrow-left::before {
+  content: "\f12f";
+}
+/*! CSS Used fontfaces */
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwf7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMw77I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuM3b7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A,
+    U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346,
+    U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6,
+    U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043,
+    U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C,
+    U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121,
+    U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2,
+    U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319,
+    U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1,
+    U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB,
+    U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE,
+    U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuM2T7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4,
+    U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3,
+    U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF,
+    U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF,
+    U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0,
+    U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F,
+    U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315,
+    U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382,
+    U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6,
+    U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7,
+    U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444,
+    U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0,
+    U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA,
+    U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB,
+    U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513,
+    U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D,
+    U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC,
+    U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC,
+    U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887,
+    U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B,
+    U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C,
+    U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8,
+    U+1FB00-1FBFF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwX7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwT7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwr7I_FMl_E.woff2)
+    format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwf7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMw77I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuM3b7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A,
+    U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346,
+    U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6,
+    U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043,
+    U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C,
+    U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121,
+    U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2,
+    U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319,
+    U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1,
+    U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB,
+    U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE,
+    U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuM2T7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4,
+    U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3,
+    U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF,
+    U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF,
+    U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0,
+    U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F,
+    U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315,
+    U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382,
+    U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6,
+    U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7,
+    U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444,
+    U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0,
+    U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA,
+    U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB,
+    U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513,
+    U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D,
+    U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC,
+    U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC,
+    U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887,
+    U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B,
+    U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C,
+    U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8,
+    U+1FB00-1FBFF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwX7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwT7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwr7I_FMl_E.woff2)
+    format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwf7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMw77I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuM3b7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A,
+    U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346,
+    U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6,
+    U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043,
+    U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C,
+    U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121,
+    U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2,
+    U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319,
+    U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1,
+    U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB,
+    U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE,
+    U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuM2T7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4,
+    U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3,
+    U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF,
+    U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF,
+    U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0,
+    U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F,
+    U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315,
+    U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382,
+    U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6,
+    U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7,
+    U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444,
+    U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0,
+    U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA,
+    U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB,
+    U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513,
+    U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D,
+    U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC,
+    U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC,
+    U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887,
+    U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B,
+    U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C,
+    U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8,
+    U+1FB00-1FBFF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwX7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwT7I_FMl_GW8g.woff2)
+    format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lora/v35/0QIvMX1D_JOuMwr7I_FMl_E.woff2)
+    format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-display: block;
+  font-family: bootstrap-icons;
+  src:
+    url("https://directmeds.com/dm-q2spc-c31/sharedAssets/css/fonts/bootstrap-icons.woff2")
+      format("woff2"),
+    url("https://directmeds.com/dm-q2spc-c31/sharedAssets/css/fonts/bootstrap-icons.woff")
+      format("woff");
+}

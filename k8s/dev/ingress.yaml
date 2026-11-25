@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: movyohealth-landing-dev-ingress
+  namespace: movyohealth-landing-dev
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    # Gzip is enabled cluster-wide via k8s/ingress-nginx-gzip-configmap.yaml (server-snippet
+    # gzip is ignored when allow-snippet-annotations is false on the ingress controller).
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - dev-movyohealth-landing.automatedpros.link
+      secretName: movyohealth-landing-dev-tls
+
+  rules:
+    - host: dev-movyohealth-landing.automatedpros.link
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: movyohealth-landing-dev-service
+                port:
+                  number: 80

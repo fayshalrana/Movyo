@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      INTAKE_API_URL: https://staging.intake.dosable.com
+      API_KEY: e1eb09a8396d0609618f75e1d2c184dbc21ed40fe4ee47481e9f96910b321b81
+      TENANT_ID: "29"
+    restart: unless-stopped

@@ -1,0 +1,489 @@
+@import "tailwindcss";
+
+html {
+  overflow-x: clip;
+}
+
+/* Shared design tokens — in Tailwind use shorthand: text-(--color-landing-*), bg-(--color-landing-*), border-(--color-landing-*), from-(--color-landing-*), to-(--color-landing-*) */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-brand-primary: #c32e6d;
+  --color-brand-primary-hover: #a8275c;
+  --color-text-primary: #292929;
+  --color-surface-muted: #f9fafb;
+  --color-border-default: #e5e7eb;
+  --color-frame-dashed: #d8b4fe;
+
+  --color-landing-primary: #bc336a;
+  --color-landing-secondary: #003982;
+  --color-landing-bg-blue-start: #e1f0f9;
+  --color-landing-bg-blue-end: #ffffff;
+  --color-landing-bg-pink: #fdf2f7;
+  --color-landing-text-heading: #1a3251;
+  --color-landing-text-body: #4a5568;
+  --color-landing-text-muted: #718096;
+  --color-landing-text-strong: #2d3748;
+  --color-landing-border: #e2e8f0;
+  --color-landing-surface: #ffffff;
+
+  --DropShadow100: rgba(15, 31, 92, 0.1);
+
+  --font-landing-sans:
+    var(--font-sf-pro-display), var(--font-inter), system-ui, sans-serif;
+  --font-landing-serif:
+    var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans:
+    var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-serif:
+    var(--font-instrument-serif), Georgia, "Times New Roman", Times, serif;
+  /* Explicit Instrument Serif (Google font variable from layout) */
+  --font-instrument:
+    var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  /* Hero / marketing headlines — SF Pro Display when available (Apple), else Inter */
+  --font-sf:
+    var(--font-sf-pro-display), var(--font-inter), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-satoshi: "Satoshi", var(--font-sf-pro-display), system-ui, sans-serif;
+
+  /*
+   * Layout bands (align with design):
+   * · Mobile:     ≤640px     → default; use max-sm: for “mobile only”
+   * · Tablet:     641–1024px → sm: … max-lg: when needed
+   * · Desktop:    1025–1439px → lg: … max-xl: when needed
+   * · Large:      ≥1440px    → xl:
+   *
+   * Tailwind min-width tokens (sorted): sm < md < lg < xl < 2xl
+   */
+  --breakpoint-sm: 40.0625rem;
+  /* 641px — tablet / small devices */
+  --breakpoint-md: 48rem;
+  /* 768px — keeps common md: tablet tweaks */
+  --breakpoint-lg: 64.0625rem;
+  /* 1025px — desktop */
+  --breakpoint-xl: 90rem;
+  /* 1440px — larger screens */
+  --breakpoint-2xl: 120rem;
+  /* 1920px — extra-wide */
+
+  /* Home sections: primary content max width for ~320px–767px (below md: 768px) */
+  --max-width-section-narrow: 420px;
+  /* Figma mobile pricing card (440px frame − 16px gutters × 2) */
+  --width-pricing-card-mobile: 408px;
+  --height-pricing-card-mobile: 712px;
+
+  /* Footer brand column (logo + newsletter rail); px literal */
+  --max-width-footer-brand: 242px;
+  --spacing-footer-brand: 242px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+
+/* Keep footer newsletter input transparent even when browser autofills. */
+.footer-newsletter-input:-webkit-autofill,
+.footer-newsletter-input:-webkit-autofill:hover,
+.footer-newsletter-input:-webkit-autofill:focus,
+.footer-newsletter-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #545454;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  box-shadow: 0 0 0 1000px transparent inset;
+  background-color: transparent !important;
+  caret-color: #545454;
+}
+
+@keyframes trust-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.trust-marquee-track {
+  animation: trust-marquee var(--marquee-duration, 40s) linear infinite;
+  will-change: transform;
+}
+
+/*
+ * Why Movyo bar: three identical strips so translate(-100%/3) always equals one strip
+ * (avoids 50% + reverse loop gaps from subpixel / flex rounding).
+ * Reverse plays toward translate(0) = content moves left-to-right.
+ */
+@keyframes trust-marquee-thirds {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-100% / 3), 0, 0);
+  }
+}
+
+.trust-marquee-track-ltr {
+  animation: trust-marquee-thirds var(--marquee-duration, 40s) linear infinite
+    reverse;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Three identical strips — content moves right → left with no blank gaps */
+.header-feature-marquee {
+  animation: trust-marquee-thirds var(--marquee-duration, 40s) linear infinite;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.text-scroller-track {
+  animation: trust-marquee var(--marquee-duration, 45s) linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-marquee-track,
+  .trust-marquee-track-ltr,
+  .header-feature-marquee,
+  .text-scroller-track {
+    animation: none;
+  }
+}
+
+.weight-calculator-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  border-radius: 9999px;
+  border: 1px solid #e0e0e0;
+  background: linear-gradient(
+    to right,
+    #0f1f5c 0%,
+    #0f1f5c var(--range-fill, 50%),
+    #ffffff var(--range-fill, 50%),
+    #ffffff 100%
+  );
+  outline: none;
+}
+
+.weight-calculator-range::-webkit-slider-runnable-track {
+  height: 14px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+.weight-calculator-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  margin-top: -10px;
+  border: 0;
+  border-radius: 9999px;
+  background: url("/assets/range-thumb.webp") center / cover no-repeat;
+  box-shadow: 0 2px 10px rgba(15, 31, 92, 0.2);
+  cursor: grab;
+}
+
+.weight-calculator-range:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+.weight-calculator-range::-moz-range-track {
+  height: 14px;
+  border-radius: 9999px;
+  border: 1px solid #e0e0e0;
+  background: linear-gradient(
+    to right,
+    #0f1f5c 0%,
+    #0f1f5c var(--range-fill, 50%),
+    #ffffff var(--range-fill, 50%),
+    #ffffff 100%
+  );
+}
+
+.weight-calculator-range::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 9999px;
+  background: url("/assets/range-thumb.webp") center / cover no-repeat;
+  box-shadow: 0 2px 10px rgba(15, 31, 92, 0.2);
+  cursor: grab;
+}
+
+/* Curved horizontal image strip (used by CurvedCommunityCarousel) */
+.curved-carousel-section {
+  position: relative;
+  --v-offset: 60px;
+  --curve-height: 120px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .curved-carousel-section {
+    --v-offset: 44px;
+    --curve-height: 20px;
+  }
+}
+
+.curved-carousel-section::before,
+.curved-carousel-section::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--v-offset));
+  width: calc(100% + 2 * var(--v-offset));
+  height: var(--curve-height);
+  background: var(--carousel-curve-color, #ffffff);
+  border-radius: 50%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.curved-carousel-section::before {
+  top: calc(-0.6 * var(--curve-height));
+}
+
+.curved-carousel-section::after {
+  bottom: calc(-0.6 * var(--curve-height));
+}
+
+.curved-carousel-viewport {
+  container-type: inline-size;
+  container-name: curved-carousel;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px) {
+  .curved-carousel-viewport {
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+  }
+}
+/* @media (min-width: 1000px) and (max-width: 1239px) {
+  section{
+    padding: 0 8px;
+  }
+} */
+.curved-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.curved-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 0;
+}
+
+/*
+ * Desktop: four slides per row — (100cqi − 3 gaps) / 4.
+ * Mobile: one primary slide + peek of the next (~48px) for swipe affordance.
+ */
+.curved-carousel-slide {
+  position: relative;
+  flex: 0 0 calc((100cqi - 48px) / 4);
+  min-width: 0;
+  height: 423px;
+  align-self: center;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 1024px) {
+  .curved-carousel-section--v1 {
+    --v-offset: 0px;
+    --curve-height: 116px;
+  }
+
+  .curved-carousel-section--v1::before,
+  .curved-carousel-section--v1::after {
+    min-width: 1362px;
+    left: -44.5px;
+    width: 106%;
+  }
+
+  .curved-carousel-section--v1 .curved-carousel-slide {
+    /* Exactly 4 cards across with 24px gaps (3 gaps total). */
+    flex: 0 0 calc((100cqi - 72px) / 4);
+  }
+  .curved-carousel-section--v2 .curved-carousel-slide {
+    /* Narrower cards — 220px accounts for side padding + peek effect. */
+    flex: 0 0 calc((100cqi - 220px) / 4);
+  }
+}
+
+@media (max-width: 991px) {
+  .curved-carousel-slide {
+    height: 307px;
+  }
+
+  .curved-carousel-section--v1 .curved-carousel-slide {
+    height: 423px;
+  }
+}
+@media (max-width: 767px) {
+  .curved-carousel-section--v1 {
+    container-type: inline-size;
+    --v-offset: 0px;
+    --curve-height: 50px;
+  }
+
+  .curved-carousel-section--v1::before,
+  .curved-carousel-section--v1::after {
+    left: -31px;
+    width: 486px;
+  }
+
+  .curved-carousel-section--v1 .curved-carousel-viewport {
+    scroll-padding-inline: 0;
+  }
+
+  .curved-carousel-section--v1 .curved-carousel-track {
+    align-items: center;
+    gap: 24px;
+  }
+
+  .curved-carousel-section--v1 .curved-carousel-slide {
+    flex: 0 0 calc(100cqi - 120px);
+    height: 423px;
+  }
+
+  /* Prev on active slide; next at leading edge of peek slide */
+  .curved-carousel-section--v1 .curved-carousel-nav-prev {
+    left: 0;
+    right: auto;
+    transform: translateY(-50%);
+  }
+
+  .curved-carousel-section--v1 .curved-carousel-nav-next {
+    left: calc(100cqi - 24px);
+    right: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  .curved-carousel-section--v2 {
+    --v-offset: 0px;
+    --curve-height: 20px;
+  }
+
+  .curved-carousel-section--v2::before,
+  .curved-carousel-section--v2::after {
+    left: 0;
+    width: 100%;
+  }
+
+  .curved-carousel-section--v2 .curved-carousel-viewport {
+    scroll-padding-inline: 0;
+  }
+
+  .curved-carousel-section--v2 .curved-carousel-track {
+    align-items: flex-start;
+  }
+
+  .curved-carousel-section--v2 .curved-carousel-slide {
+    flex: 0 0 100cqi;
+    height: 503px;
+    border-radius: 0;
+  }
+
+  .curved-carousel-section--v2 .curved-carousel-slide img {
+    object-position: top center;
+    top: 0;
+  }
+
+  /* Figma: 408×712 pricing card — plain CSS (max-md: Tailwind variant is not available) */
+  .choose-program-shell {
+    width: var(--width-pricing-card-mobile);
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .choose-program-card {
+    box-sizing: border-box;
+    width: var(--width-pricing-card-mobile);
+    max-width: 100%;
+    max-height: var(--height-pricing-card-mobile);
+    padding: 32px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .choose-program-card .choose-program-vial-wrap {
+    height: 176px;
+    padding-block: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .choose-program-shell {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* Custom button bouncy animation */
+.btn-bounce {
+  transform-origin: center;
+  transition-property:
+    transform, color, background-color, border-color, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-bounce:hover {
+    transform: scale(1.05);
+  }
+  .btn-bounce:active {
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-bounce:hover {
+    transform: scale(1);
+  }
+}
+
+/* Custom premium slim scrollbar */
+.premium-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+.premium-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.premium-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.premium-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 9999px;
+}
+.premium-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #94A3B8;
+}
+

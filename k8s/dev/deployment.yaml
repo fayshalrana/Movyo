@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movyohealth-landing-dev
+  namespace: movyohealth-landing-dev
+  # Test commit to trigger Bitbucket pipeline (2026-04-25)
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: movyohealth-landing-dev
+  template:
+    metadata:
+      labels:
+        app: movyohealth-landing-dev
+    spec:
+      serviceAccountName: movyohealth-landing-dev-sa
+      containers:
+        - name: movy-dev
+          image: 125916821163.dkr.ecr.us-east-1.amazonaws.com/devops/movyohealth-landing-dev:v1.25
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          # envFrom:
+          #   - secretRef:
+          #       name: movyohealth-landing-dev-secrets
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "250Mi"
+            limits:
+              cpu: "200m"
+              memory: "350Mi"
+        - name: redis
+          image: redis:7.2-alpine
+          ports:
+            - containerPort: 6379
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi

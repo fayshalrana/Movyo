@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movyohealth-prod
+  namespace: movyohealth-prod
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: movyohealth-prod
+  template:
+    metadata:
+      labels:
+        app: movyohealth-prod
+    spec:
+      serviceAccountName: movyohealth-prod-sa
+      containers:
+        - name: movy-dev
+          image: 125916821163.dkr.ecr.us-east-1.amazonaws.com/movyohealth-landing:v1.166
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: movyohealth-prod-secrets
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "250Mi"
+            limits:
+              cpu: "200m"
+              memory: "350Mi"

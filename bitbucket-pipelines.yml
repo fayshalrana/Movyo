@@ -1,0 +1,92 @@
+definitions:
+  services:
+    docker:
+      memory: 3072 # Define the docker service with 3GB memory here.
+  caches:
+    npm: $HOME/.npm
+
+pipelines:
+  branches:
+    # --- DEV PIPELINE (Automatic on push) ---
+    aws_beta:
+      - step:
+          name: Build and Deploy to DEV
+          image: docker:latest
+          size: '2x'
+          oidc: true
+          caches:
+            - npm
+          services:
+            - docker
+          script:
+            # --- Install dependencies ---
+            - apk add --no-cache aws-cli yq git
+
+            # --- AWS Configuration ---
+            - export AWS_REGION="us-east-1"
+            - export AWS_ROLE_ARN="arn:aws:iam::125916821163:role/bb-oidc-ecr-us-east-1"
+            - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
+            - echo $BITBUCKET_STEP_OIDC_TOKEN > $(pwd)/web-identity-token
+            - export ECR_REGISTRY="125916821163.dkr.ecr.us-east-1.amazonaws.com"
+            - export ECR_REPO_URL="$ECR_REGISTRY/devops/movyohealth-landing-dev"
+            - export IMAGE_TAG="v1.${BITBUCKET_BUILD_NUMBER}"
+
+            # --- Docker Build & Push ---
+            - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+            - export DOCKER_BUILDKIT=0
+            - docker build --build-arg NODE_OPTIONS="--max-old-space-size=4096" -t $ECR_REPO_URL:$IMAGE_TAG .
+            - docker push $ECR_REPO_URL:$IMAGE_TAG
+
+            # --- Update BETA manifest ---
+            - yq -i '.spec.template.spec.containers[0].image = "'"$ECR_REPO_URL:$IMAGE_TAG"'"' k8s/dev/deployment.yaml
+
+            # --- Commit & Push changes ---
+            - git config --global user.email "pipeline@bitbucket.org"
+            - git config --global user.name "Bitbucket Pipeline"
+            - git add k8s/dev/deployment.yaml
+            - git commit -m "[DEV] Update image to $IMAGE_TAG [skip ci]" 
+            - git push
+    # --- PROD PIPELINE (Automatic on push) ---
+    main:
+      - step:
+          name: Ready to Deploy to Live
+          script:
+            - echo "A new commit is ready. Click 'Deploy' on the next step to start the process."
+      - step:
+          name: Approve, Build, and Deploy to Live
+          image: docker:latest
+          size: '2x'
+          trigger: manual
+          oidc: true
+          caches:
+            - npm
+          services:
+            - docker
+          script:
+            # --- Install dependencies ---
+            - apk add --no-cache aws-cli yq git
+
+            # --- AWS Configuration ---
+            - export AWS_REGION="us-east-1"
+            - export AWS_ROLE_ARN="arn:aws:iam::125916821163:role/bb-oidc-ecr-us-east-1"
+            - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
+            - echo $BITBUCKET_STEP_OIDC_TOKEN > $(pwd)/web-identity-token
+            - export ECR_REGISTRY="125916821163.dkr.ecr.us-east-1.amazonaws.com"
+            - export ECR_REPO_URL="$ECR_REGISTRY/devops/movyohealth-landing"
+            - export IMAGE_TAG="v1.${BITBUCKET_BUILD_NUMBER}"
+
+            # --- Docker Build & Push ---
+            - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+            - export DOCKER_BUILDKIT=0
+            - docker build --build-arg NODE_OPTIONS="--max-old-space-size=4096" -t $ECR_REPO_URL:$IMAGE_TAG .
+            - docker push $ECR_REPO_URL:$IMAGE_TAG
+
+            # --- Update BETA manifest ---
+            - yq -i '.spec.template.spec.containers[0].image = "'"$ECR_REPO_URL:$IMAGE_TAG"'"' k8s/prod/deployment.yaml
+
+            # --- Commit & Push changes ---
+            - git config --global user.email "pipeline@bitbucket.org"
+            - git config --global user.name "Bitbucket Pipeline"
+            - git add k8s/prod/deployment.yaml
+            - git commit -m "[PRD] Update image to $IMAGE_TAG [skip ci]" 
+            - git push
